@@ -14,7 +14,7 @@ class User(UserMixin):
     '''
     email: str
     senha: str
-    def __init__(self, email, senha):
+    def __init__(self, email:str, senha: str):
         '''Inicializa o Usuário, recebe ```email``` (id) e ```senha``` como parâmetros.'''
         self.email = email
         self.senha = senha
