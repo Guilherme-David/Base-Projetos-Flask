@@ -32,7 +32,7 @@ def index():
 def register():
     if request.method == 'POST':
         email = request.form['email']
-        senha = request.form['senha']
+        senha = request.form['password']
 
         usuarios = User.all() # Pega os emails de session['usuarios']
 
@@ -50,7 +50,7 @@ def register():
 def login():
     if request.method == 'POST':
         email = request.form['email']
-        senha = request.form['senha']
+        senha = request.form['password']
         
         user = User.find(email) # Procura o usuario com base no email
         
