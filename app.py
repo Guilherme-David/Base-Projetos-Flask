@@ -36,7 +36,7 @@ def register():
 
         usuarios = User.all() # Pega os emails de session['usuarios']
 
-        if email not in usuarios.keys(): # Se o usuário não está cadastrado
+        if email not in usuarios: # Se o usuário não está cadastrado
             user = User(email=email, senha=senha) # Cria o Usuário
             user.save() # Salva o usuario na sessão
             login_user(user) # Loga o Usuário
@@ -53,7 +53,11 @@ def login():
         senha = request.form['password']
         
         user = User.find(email) # Procura o usuario com base no email
-        
+        if user == False: # Se o retorno acima for False, o email não está cadastrado
+            flash('Email Inexistente, Faça seu Cadastro') # Email inexistente
+            return redirect(url_for('register'))
+
+        # Se o email existir
         if check_password_hash(user.senha, senha): # Se a senha estiver correta
             login_user(user)
             flash('Você está logado')
